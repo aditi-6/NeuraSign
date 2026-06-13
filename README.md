@@ -68,18 +68,25 @@ That's it. Point your webcam at your hand.
 ## Project Structure
 
 neurasign/
+
 ├── main.py                  # Entry point, ties everything together
+
 ├── detection/
 │   └── hand_tracker.py      # MediaPipe setup, landmark extraction
+
 ├── recognition/
 │   └── gesture_classifier.py  # Finger state logic, gesture labeling
+
 ├── output/
 │   └── voice_output.py      # TTS + text display
+
 ├── ui/
 │   └── dashboard.py         # Live feed, stats, detected sign display
+
 ├── requirements.txt
+
 └── README.md
--------------------------------------------------------------------------
+
 
 ## The Neuromorphic Angle :
 
