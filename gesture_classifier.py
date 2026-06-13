@@ -84,26 +84,23 @@ def classify_gesture(landmarks):
     ):
         gesture = "HELLO"
 
-    # ---------------- YES ----------------
-    # Thumbs up: thumb open + pointing upward, all fingers closed
-    # Checked BEFORE HELP to avoid conflict
+   # ---------------- YES ----------------
     elif (
-        thumb_open and
-        not index_open and not middle_open and
-        not ring_open and not pinky_open and
-        thumb_dy < 0  # thumb pointing up
-    ):
-        gesture = "YES"
+    thumb_open and
+    not index_open and not middle_open and
+    not ring_open and not pinky_open and
+    thumb_dy < 0 and abs(thumb_dy) > abs(thumb_dx)  # strictly upward, not diagonal
+):
+     gesture = "YES"
 
-    # ---------------- HELP ----------------
-    # Closed fist with thumb extended SIDEWAYS (not upward)
-    # abs(thumb_dx) > abs(thumb_dy) ensures thumb goes sideways, not up
+# ---------------- HELP ----------------
     elif (
-        not index_open and not middle_open and
-        not ring_open and not pinky_open and
-        thumb_open and abs(thumb_dx) > abs(thumb_dy)
-    ):
-        gesture = "HELP"
+    thumb_open and
+    not index_open and not middle_open and
+    not ring_open and not pinky_open and
+    abs(thumb_dx) > abs(thumb_dy)  # strictly sideways
+):
+     gesture = "HELP"
 
     # ---------------- NO ----------------
     # Peace sign: index + middle open, rest closed, no thumb
