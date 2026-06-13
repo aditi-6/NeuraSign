@@ -2,6 +2,8 @@ import sys
 import cv2
 import mediapipe as mp
 from gesture_classifier import classify_gesture
+from hand_detection import HandDetector
+
 
 mp_hands = mp.solutions.hands
 mp_draw = mp.solutions.drawing_utils
@@ -14,6 +16,7 @@ hands = mp_hands.Hands(
 )
 
 cap = cv2.VideoCapture(0)
+detector = HandDetector()
 
 window_name = "Sign Language Translator"
 
@@ -43,7 +46,11 @@ try:
                 for lm in hand_landmarks.landmark:
                     landmarks.append((int(lm.x * w), int(lm.y * h)))
 
+                event = detector.detect_event(landmarks)
+                if event is None:
+                    continue
                 gesture = classify_gesture(landmarks)
+                cv2.putText(frame, f"Events: {detector.event_count}", (50, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 0), 2)
 
                 cv2.putText(
                     frame,
