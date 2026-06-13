@@ -69,19 +69,19 @@ That's it. Point your webcam at your hand.
 
 neurasign/
 
-├── main.py                  # Entry point, ties everything together
+├── main.py                      # Entry point, ties everything together
 
 ├── detection/
-│   └── hand_tracker.py      # MediaPipe setup, landmark extraction
+│   └── hand_tracker.py          # MediaPipe setup, landmark extraction
 
 ├── recognition/
-│   └── gesture_classifier.py  # Finger state logic, gesture labeling
+│   └── gesture_classifier.py     # Finger state logic, gesture labeling
 
 ├── output/
-│   └── voice_output.py      # TTS + text display
+│   └── voice_output.py           # TTS + text display
 
 ├── ui/
-│   └── dashboard.py         # Live feed, stats, detected sign display
+│   └── dashboard.py          # Live feed, stats, detected sign display
 
 ├── requirements.txt
 
@@ -92,9 +92,12 @@ neurasign/
 
 Standard video processing = run inference on every frame = 30 classifications/second even when nothing's happening.
 
+
 Our approach = event-driven spike logic. A threshold check compares the Euclidean distance of key landmarks between frames. If the movement is below the threshold, we skip classification entirely. If it crosses the threshold, we "fire" — run the classifier, update output.
 
+
 Result: on a static hand, we process ~0 frames per second. On an active gesture, we process only the frames that matter.
+
 
 This maps directly to how Spiking Neural Networks (SNNs) work — neurons fire only when input crosses a threshold. We implemented this as a software approximation without specialized neuromorphic hardware.
 
@@ -102,8 +105,11 @@ This maps directly to how Spiking Neural Networks (SNNs) work — neurons fire o
 ## Limitations (we're honest people) :
 
 Works best with a plain background and decent lighting
+
 Currently supports 5 predefined gestures — vocabulary can be extended by defining new finger-state rules
+
 The "neuromorphic" implementation is a software approximation, not actual spiking hardware
+
 One hand only for now
 
 
@@ -112,14 +118,21 @@ One hand only for now
 Built at Neuronex'26 — 13-06-26
 
 ## MemberModule
-Aditi Jha : Hand Detection + Landmark Extraction
-Gauri Nandana M : Gesture Recognition (the AI bit)
+Aditi Jha : Hand Detection + Landmark Extraction.
+
+
+Gauri Nandana M : Gesture Recognition (the AI bit).
+
+
 Vidushi Kesharwani : Event Logic + UI + TTS
 
 
 ## Future Scope: 
 
 Expanded gesture vocabulary (beyond the current 5)
+
 Dynamic gesture support (motion-based signs like "THANK YOU")
+
 Actual neuromorphic hardware deployment (Intel Loihi, BrainScaleS)
+
 Mobile-first version
