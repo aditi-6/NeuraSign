@@ -17,9 +17,14 @@ Think of it like this: your brain doesn't process your entire visual field every
 # Supported Gestures
 
 🖐️ STOP :Open palm, facing camera All 5 fingers extended
+
 👍 YES Thumbs up Thumb out, others closed
+
 ✌️ NOPeace signIndex + middle up, rest closed
+
 👋 HELLO Open palm, slight tiltSimilar to STOP but sideways
+
+
 🆘 HELP Closed fist, thumb to sideFist + thumb extended laterally
 
 
@@ -74,7 +79,7 @@ neurasign/
 │   └── dashboard.py         # Live feed, stats, detected sign display
 ├── requirements.txt
 └── README.md
-
+-------------------------------------------------------------------------
 
 ## The Neuromorphic Angle :
 
