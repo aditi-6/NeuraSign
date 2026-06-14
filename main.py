@@ -3,6 +3,11 @@ import cv2
 import mediapipe as mp
 from gesture_classifier import classify_gesture
 from hand_detection import HandDetector
+import pyttsx3
+
+engine = pyttsx3.init()
+engine.setProperty('rate', 150)
+last_spoken = None
 
 
 mp_hands = mp.solutions.hands
@@ -50,6 +55,11 @@ try:
                 if event is None:
                     continue
                 gesture = classify_gesture(landmarks)
+               if gesture != last_spoken:
+                   engine.say(gesture)
+                   engine.runAndWait()
+                   last_spoken = gesture
+            
  
                 # Background box behind text for readability
                 text = f"Sign: {gesture}"
@@ -65,6 +75,8 @@ try:
                     (0, 255, 0),
                     2
                 )
+         event_text = f"Events: {detector.event_count}"
+         cv2.putText(frame, event_text, (50, 100), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 255), 2)
  
         cv2.imshow(window_name, frame)
  
