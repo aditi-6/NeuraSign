@@ -51,7 +51,7 @@ Webcam → Hand Landmarks → Event Detection → Gesture Classifier → Text + 
 - OpenCV — webcam capture and display
 - MediaPipe 0.10.21 — hand landmark detection
 - NumPy — delta calculation and landmark math
-- pyttsx3 — offline text-to-speech
+- Windows Speech Synthesis — offline text-to-speech via subprocess
 ---
  
 ## Setup
