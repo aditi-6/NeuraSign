@@ -3,7 +3,7 @@ import numpy as np
 class HandDetector:
     def __init__(self):
         self.prev_landmarks = None
-        self.THRESHOLD = 0.02
+        self.THRESHOLD = 0.05
         self.event_count = 0
 
     def detect_event(self, landmarks):
